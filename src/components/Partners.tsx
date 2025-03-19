@@ -1,53 +1,35 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FadeIn from './FadeIn';
-import { Handshake, ExternalLink, Image as ImageIcon } from 'lucide-react';
+import { Handshake, ExternalLink, ImageIcon } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 
-// Certifique-se de que os caminhos das imagens estão corretos e começam com /
+// Define os parceiros com seus dados
 const partnersData = [
   {
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    logo: '/lovable-uploads/4240845f-383a-4238-ae33-1b4f4a51482f.png',
+    logo: '/esri-logo.png', // Use a static image that exists in the public directory
     website: 'https://www.esri.com'
   },
   {
     id: 2,
     name: 'Imagem',
     description: 'Empresa especializada em geotecnologias e distribuidora exclusiva dos produtos Esri no Brasil.',
-    logo: '/lovable-uploads/4240845f-383a-4238-ae33-1b4f4a51482f.png', // Usando a mesma imagem como exemplo
+    logo: '/imagem-logo.png', // Use a static image that exists in the public directory
     website: 'https://www.img.com.br'
   }
 ];
 
 const Partners = () => {
+  // Estado para controlar imagens com erro de carregamento
   const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
-  const [imagesLoaded, setImagesLoaded] = useState<{[key: number]: boolean}>({});
-
-  // Adicionar timestamp para evitar cache do navegador
-  const getImageUrl = (url: string) => {
-    if (!url) return null;
-    const timestamp = new Date().getTime();
-    return `${url}?t=${timestamp}`;
-  };
-
-  const handleImageLoad = (id: number) => {
-    console.log(`Image loaded successfully for partner ${id}`);
-    setImagesLoaded(prev => ({...prev, [id]: true}));
-  };
 
   const handleImageError = (id: number) => {
-    console.log(`Error loading image for partner ${id}`);
+    console.log(`Erro ao carregar imagem do parceiro ${id}`);
     setImageErrors(prev => ({...prev, [id]: true}));
   };
-
-  // Limpar os estados de erro quando o componente é montado ou atualizado
-  useEffect(() => {
-    setImageErrors({});
-    setImagesLoaded({});
-  }, [partnersData]);
 
   return (
     <section id="partners" className="py-16 bg-white">
@@ -71,18 +53,17 @@ const Partners = () => {
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   <div className="w-full max-w-[240px] mb-6 flex items-center justify-center min-h-[120px]">
-                    {partner.logo ? (
+                    {!imageErrors[partner.id] ? (
                       <img 
-                        src={getImageUrl(partner.logo)} 
+                        src={partner.logo} 
                         alt={`${partner.name} logo`} 
                         className="max-w-full max-h-[120px] object-contain" 
-                        onLoad={() => handleImageLoad(partner.id)}
                         onError={() => handleImageError(partner.id)}
                       />
                     ) : (
                       <div className="flex flex-col items-center justify-center text-gray-400">
                         <ImageIcon size={48} />
-                        <span className="mt-2 text-sm">Imagem não disponível</span>
+                        <span className="mt-2 text-sm">Logo não disponível</span>
                       </div>
                     )}
                   </div>
