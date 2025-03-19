@@ -77,7 +77,7 @@ const AnimatedMap = () => {
         const dx = mouseX - point.originX;
         const dy = mouseY - point.originY;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 150;
+        const maxDistance = 100; // Reduced from 150 to decrease the effect area
         
         if (distance < maxDistance) {
           const force = (1 - distance / maxDistance) * 5;
