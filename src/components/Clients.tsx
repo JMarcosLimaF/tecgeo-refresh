@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Building, Landmark } from 'lucide-react';
 import FadeIn from './FadeIn';
@@ -19,7 +18,7 @@ const clientList = [
   { id: 6, name: 'Prefeitura de Ipojuca', type: 'municipality' },
   { id: 7, name: 'Prefeitura de São José do Ribamar', type: 'municipality' },
   { id: 8, name: 'Prefeitura de São Luís', type: 'municipality' },
-  { id: 9, name: 'Prefeitura de João Pessoa', type: 'municipality' },
+  { id: 9, name: 'Prefeitura de João Pessoa', type: 'municipality', logo: 'lovable-uploads/973264d0-ef7b-406e-82cb-e3343fd3eb43.png' },
   { id: 10, name: 'Prefeitura de Garanhuns', type: 'municipality' },
   { id: 11, name: 'Prefeitura de Recife', type: 'municipality' },
   { id: 12, name: 'Prefeitura de Teresina', type: 'municipality' },
