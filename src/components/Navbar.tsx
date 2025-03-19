@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -87,14 +88,6 @@ const Navbar = () => {
               {renderNavLink(link)}
             </React.Fragment>
           ))}
-          {location.pathname !== '/carreiras' && (
-            <Link
-              to="/carreiras"
-              className="px-5 py-2 rounded-full bg-tecgeo-teal text-white font-medium hover:bg-tecgeo-blue hover:shadow-lg transition-all"
-            >
-              Fale Conosco
-            </Link>
-          )}
         </div>
 
         {/* Mobile menu button */}
@@ -120,15 +113,6 @@ const Navbar = () => {
               {renderNavLink(link)}
             </React.Fragment>
           ))}
-          {location.pathname !== '/carreiras' && (
-            <Link
-              to="/carreiras"
-              className="block w-full text-center px-5 py-2 rounded-full bg-tecgeo-teal text-white font-medium hover:bg-tecgeo-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Fale Conosco
-            </Link>
-          )}
         </div>
       </div>
     </nav>
