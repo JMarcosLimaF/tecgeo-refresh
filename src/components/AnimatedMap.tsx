@@ -84,9 +84,9 @@ const AnimatedMap = () => {
           point.x = point.originX + (dx * force) / 10;
           point.y = point.originY + (dy * force) / 10;
           
-          // Transition color to light green (#90ee90) based on proximity
+          // Transition color to green (#6eaa5e) based on proximity
           const colorIntensity = 1 - distance / maxDistance;
-          point.color = `rgba(144, 238, 144, ${0.4 + colorIntensity * 0.6})`; // Light green with variable opacity
+          point.color = `rgba(110, 170, 94, ${0.4 + colorIntensity * 0.6})`; // Changed to #6eaa5e
         } else {
           point.x = point.originX;
           point.y = point.originY;
@@ -110,11 +110,11 @@ const AnimatedMap = () => {
           if (distanceAB < gridSize * 1.5) {
             // Calculate line color based on the average color of connected points
             const isNearMouse = 
-              pointA.color.includes('144, 238, 144') || 
-              pointB.color.includes('144, 238, 144');
+              pointA.color.includes('110, 170, 94') || 
+              pointB.color.includes('110, 170, 94');
               
             ctx.strokeStyle = isNearMouse 
-              ? 'rgba(144, 238, 144, 0.2)' // Light green for lines near mouse
+              ? 'rgba(110, 170, 94, 0.2)' // Changed to #6eaa5e for lines near mouse
               : 'rgba(14, 165, 233, 0.2)'; // Default blue for regular lines
               
             ctx.beginPath();
