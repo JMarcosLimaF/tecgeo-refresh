@@ -17,7 +17,7 @@ const partnersData = [
     id: 2,
     name: 'Imagem',
     description: 'Empresa especializada em geotecnologias e distribuidora exclusiva dos produtos Esri no Brasil.',
-    logo: null,
+    logo: '/lovable-uploads/4240845f-383a-4238-ae33-1b4f4a51482f.png', // Usando a mesma imagem como exemplo
     website: 'https://www.img.com.br'
   }
 ];
@@ -43,6 +43,12 @@ const Partners = () => {
     setImageErrors(prev => ({...prev, [id]: true}));
   };
 
+  // Limpar os estados de erro quando o componente é montado ou atualizado
+  useEffect(() => {
+    setImageErrors({});
+    setImagesLoaded({});
+  }, [partnersData]);
+
   return (
     <section id="partners" className="py-16 bg-white">
       <div className="section-container">
@@ -65,7 +71,7 @@ const Partners = () => {
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   <div className="w-full max-w-[240px] mb-6 flex items-center justify-center min-h-[120px]">
-                    {partner.logo && !imageErrors[partner.id] ? (
+                    {partner.logo ? (
                       <img 
                         src={getImageUrl(partner.logo)} 
                         alt={`${partner.name} logo`} 
