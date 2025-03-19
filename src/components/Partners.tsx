@@ -1,7 +1,7 @@
 
 import React from 'react';
 import FadeIn from './FadeIn';
-import { Building, Handshake } from 'lucide-react';
+import { Handshake, Building } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 
 const partnersData = [
@@ -9,7 +9,7 @@ const partnersData = [
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    logo: null
+    logo: './lovable-uploads/esri-logo.png'
   },
   {
     id: 2,
@@ -41,9 +41,19 @@ const Partners = () => {
             <FadeIn key={partner.id} delay={partner.id * 100}>
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-tecgeo-teal/10 flex items-center justify-center text-tecgeo-teal mb-4">
-                    <Building size={32} />
-                  </div>
+                  {partner.logo ? (
+                    <div className="w-16 h-16 flex items-center justify-center mb-4">
+                      <img 
+                        src={partner.logo} 
+                        alt={`${partner.name} logo`} 
+                        className="max-h-16 max-w-full object-contain" 
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-tecgeo-teal/10 flex items-center justify-center text-tecgeo-teal mb-4">
+                      <Building size={32} />
+                    </div>
+                  )}
                   <h3 className="text-xl font-semibold text-tecgeo-blue">{partner.name}</h3>
                   <p className="mt-2 text-gray-600">{partner.description}</p>
                 </CardContent>
