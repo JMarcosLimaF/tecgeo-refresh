@@ -68,7 +68,7 @@ const Footer = () => {
               <li>João Pessoa, PB - Brasil</li>
               <li>CEP - 58040-020</li>
               <li>contato@tecnologiageo.com.br</li>
-              <li>(11) 3456-7890</li>
+              <li>+55 83 3244 7755</li>
             </ul>
           </div>
         </div>
