@@ -19,19 +19,30 @@ const clientList = [
   { id: 6, name: 'Prefeitura de Ipojuca', type: 'municipality' },
   { id: 7, name: 'Prefeitura de São José do Ribamar', type: 'municipality' },
   { id: 8, name: 'Prefeitura de São Luís', type: 'municipality' },
-  { id: 9, name: 'Prefeitura de João Pessoa', type: 'municipality', logo: 'lovable-uploads/973264d0-ef7b-406e-82cb-e3343fd3eb43.png' },
+  { id: 9, name: 'Prefeitura de João Pessoa', type: 'municipality', logo: './lovable-uploads/973264d0-ef7b-406e-82cb-e3343fd3eb43.png' },
   { id: 10, name: 'Prefeitura de Garanhuns', type: 'municipality' },
   { id: 11, name: 'Prefeitura de Recife', type: 'municipality' },
   { id: 12, name: 'Prefeitura de Teresina', type: 'municipality' },
   { id: 13, name: 'Prefeitura de Santa Rita', type: 'municipality' },
   { id: 14, name: 'SEBRAE', type: 'organization' },
-  { id: 15, name: 'CAGEPA', type: 'organization', logo: 'lovable-uploads/375090d9-c3e4-4b51-b419-92ac861cdbdc.png' },
+  { id: 15, name: 'CAGEPA', type: 'organization', logo: './lovable-uploads/375090d9-c3e4-4b51-b419-92ac861cdbdc.png' },
   { id: 16, name: 'CREA-PB', type: 'organization' },
   { id: 17, name: 'CODATA', type: 'organization' },
 ];
 
 const Clients = () => {
   const [api, setApi] = useState<any>(null);
+  const [imagesLoaded, setImagesLoaded] = useState<{[key: number]: boolean}>({});
+
+  // Track which images are successfully loaded
+  const handleImageLoad = (id: number) => {
+    setImagesLoaded(prev => ({...prev, [id]: true}));
+  };
+
+  const handleImageError = (id: number) => {
+    setImagesLoaded(prev => ({...prev, [id]: false}));
+    console.error(`Failed to load image for client ${id}`);
+  };
 
   useEffect(() => {
     if (!api) return;
@@ -78,16 +89,22 @@ const Clients = () => {
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 h-36 flex flex-col items-center justify-center hover:shadow-md hover:border-secondary/20 transition-all duration-300">
                       {client.logo ? (
                         <div className="h-20 flex items-center justify-center mb-2">
-                          <img 
-                            src={client.logo} 
-                            alt={client.name} 
-                            className="max-h-16 max-w-full object-contain" 
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.onerror = null;
-                              target.style.display = 'none';
-                            }}
-                          />
+                          {imagesLoaded[client.id] !== false && (
+                            <img 
+                              src={client.logo} 
+                              alt={client.name} 
+                              className="max-h-16 max-w-full object-contain" 
+                              onLoad={() => handleImageLoad(client.id)}
+                              onError={() => handleImageError(client.id)}
+                            />
+                          )}
+                          {imagesLoaded[client.id] === false && (
+                            client.type === 'municipality' ? (
+                              <Landmark className="h-8 w-8 text-secondary" />
+                            ) : (
+                              <Building className="h-8 w-8 text-accent" />
+                            )
+                          )}
                         </div>
                       ) : (
                         <div className="mb-2">
