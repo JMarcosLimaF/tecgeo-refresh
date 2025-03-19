@@ -25,8 +25,8 @@ const Hero = () => {
             
             <FadeIn delay={200}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-tecgeo-blue">
-                Transformando dados <br />
-                <span className="text-tecgeo-teal">geoespaciais</span> em soluções
+                Transformando a gestão pública <br />
+                com <span className="text-tecgeo-teal">geotecnologia</span> e inovação!
               </h1>
             </FadeIn>
             
