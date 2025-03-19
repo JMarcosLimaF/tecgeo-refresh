@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,9 +7,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, Check, Calendar, MapPin, Banknote } from 'lucide-react';
-import { useMediaQuery } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
-// Define job types and mock data
 interface Job {
   id: number;
   title: string;
@@ -109,7 +107,7 @@ const Careers = () => {
   const [open, setOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isMobile = useIsMobile();
   
   const handleOpenJobDetails = (job: Job) => {
     setSelectedJob(job);
@@ -186,7 +184,7 @@ const Careers = () => {
         </div>
       </main>
       
-      {isDesktop ? (
+      {!isMobile ? (
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
@@ -468,3 +466,4 @@ const Careers = () => {
 };
 
 export default Careers;
+
