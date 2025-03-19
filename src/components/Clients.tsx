@@ -25,7 +25,7 @@ const clientList = [
   { id: 12, name: 'Prefeitura de Teresina', type: 'municipality' },
   { id: 13, name: 'Prefeitura de Santa Rita', type: 'municipality' },
   { id: 14, name: 'SEBRAE', type: 'organization' },
-  { id: 15, name: 'CAGEPA', type: 'organization', logo: '/lovable-uploads/05db1f15-c543-4758-92c2-5f421741c2d8.png' },
+  { id: 15, name: 'CAGEPA', type: 'organization', logo: '/lovable-uploads/375090d9-c3e4-4b51-b419-92ac861cdbdc.png' },
   { id: 16, name: 'CREA-PB', type: 'organization' },
   { id: 17, name: 'CODATA', type: 'organization' },
 ];
