@@ -60,8 +60,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Contato</h3>
             <ul className="space-y-3 text-gray-300">
-              <li>Av. Tecnologia, 1234, Bairro Inovação</li>
-              <li>São Paulo - SP</li>
+              <li>Av. Juarez Távora, 522 - Torre</li>
+              <li>Empresarial Maximum, Sala 608</li>
+              <li>João Pessoa, PB - Brasil</li>
+              <li>CEP - 58040-020</li>
               <li>contato@tecnologiageo.com.br</li>
               <li>(11) 3456-7890</li>
             </ul>

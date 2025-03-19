@@ -45,7 +45,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-tecgeo-blue">Nosso endereço</h4>
-                    <p className="text-gray-600 mt-1">Av. Tecnologia, 1234<br />Bairro Inovação<br />São Paulo - SP</p>
+                    <p className="text-gray-600 mt-1">Av. Juarez Távora, 522 - Torre<br />Empresarial Maximum, Sala 608<br />João Pessoa, PB - Brasil<br />CEP - 58040-020</p>
                   </div>
                 </div>
                 
