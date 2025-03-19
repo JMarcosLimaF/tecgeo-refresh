@@ -9,6 +9,9 @@ import Projects from '@/components/Projects';
 import Partners from '@/components/Partners';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import CandidaturaPopup from '@/components/CandidaturaPopup';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 const Index = () => {
   useEffect(() => {
@@ -40,6 +43,16 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
+      <div className="fixed bottom-8 right-8 z-50">
+        <CandidaturaPopup 
+          trigger={
+            <Button className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white shadow-lg rounded-full px-6 py-6 font-bold">
+              Trabalhe Conosco
+              <ArrowRight size={18} className="ml-2" />
+            </Button>
+          }
+        />
+      </div>
       <Services />
       <Projects />
       <Clients />
