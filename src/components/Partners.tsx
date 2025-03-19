@@ -9,7 +9,7 @@ const partnersData = [
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    logo: './lovable-uploads/esri-logo.png'
+    logo: '/esri-logo.png'
   },
   {
     id: 2,
