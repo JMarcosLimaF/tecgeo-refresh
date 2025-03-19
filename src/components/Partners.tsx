@@ -1,26 +1,34 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FadeIn from './FadeIn';
-import { Handshake, Building } from 'lucide-react';
+import { Handshake, Building, ExternalLink } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
+import { AspectRatio } from './ui/aspect-ratio';
 
 const partnersData = [
   {
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    logo: '/lovable-uploads/ee2dc2b6-268e-4427-8275-180af3cb4e95.png'
+    logo: '/lovable-uploads/ee2dc2b6-268e-4427-8275-180af3cb4e95.png',
+    website: 'https://www.esri.com'
   },
   {
     id: 2,
     name: 'Imagem',
     description: 'Empresa especializada em geotecnologias e distribuidora exclusiva dos produtos Esri no Brasil.',
-    logo: null
+    logo: null,
+    website: 'https://www.img.com.br'
   }
 ];
 
 const Partners = () => {
   const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
+
+  // Função para limpar o cache da imagem adicionando um timestamp
+  const getImageUrl = (url: string) => {
+    return `${url}?t=${new Date().getTime()}`;
+  };
 
   return (
     <section id="partners" className="py-16 bg-white">
@@ -44,24 +52,37 @@ const Partners = () => {
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   {partner.logo && !imageErrors[partner.id] ? (
-                    <div className="w-40 h-40 flex items-center justify-center mb-4 border border-gray-100 rounded-md p-2">
-                      <img 
-                        src={partner.logo} 
-                        alt={`${partner.name} logo`} 
-                        className="max-w-full max-h-full object-contain" 
-                        onError={() => {
-                          console.log(`Error loading image for ${partner.name}`);
-                          setImageErrors(prev => ({...prev, [partner.id]: true}));
-                        }}
-                      />
+                    <div className="w-full max-w-[200px] border border-gray-200 rounded-md p-4 mb-4 bg-white">
+                      <AspectRatio ratio={4/3} className="bg-white">
+                        <img 
+                          src={getImageUrl(partner.logo)} 
+                          alt={`${partner.name} logo`} 
+                          className="w-full h-full object-contain" 
+                          onError={() => {
+                            console.log(`Error loading image for ${partner.name}`);
+                            setImageErrors(prev => ({...prev, [partner.id]: true}));
+                          }}
+                        />
+                      </AspectRatio>
                     </div>
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-tecgeo-teal/10 flex items-center justify-center text-tecgeo-teal mb-4">
-                      <Building size={32} />
+                    <div className="w-20 h-20 rounded-full bg-tecgeo-teal/10 flex items-center justify-center text-tecgeo-teal mb-4">
+                      <Building size={36} />
                     </div>
                   )}
                   <h3 className="text-xl font-semibold text-tecgeo-blue">{partner.name}</h3>
                   <p className="mt-2 text-gray-600">{partner.description}</p>
+                  
+                  {partner.website && (
+                    <a 
+                      href={partner.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="mt-4 inline-flex items-center text-tecgeo-teal hover:text-tecgeo-teal/80 text-sm font-medium"
+                    >
+                      Visitar site <ExternalLink className="ml-1 w-3 h-3" />
+                    </a>
+                  )}
                 </CardContent>
               </Card>
             </FadeIn>
