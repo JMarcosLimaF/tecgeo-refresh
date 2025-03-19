@@ -1,9 +1,8 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check, User, FileText, Upload } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -12,14 +11,82 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 interface CandidaturaPopupProps {
   trigger?: React.ReactNode;
 }
 
+type FormData = {
+  nome: string;
+  email: string;
+  telefone: string;
+  cidade: string;
+  experiencia: string;
+  tecnologias: string[];
+};
+
 const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
+  const [step, setStep] = useState(1);
+  const [open, setOpen] = useState(false);
+  const { toast } = useToast();
+  
+  const form = useForm<FormData>({
+    defaultValues: {
+      nome: '',
+      email: '',
+      telefone: '',
+      cidade: '',
+      experiencia: '',
+      tecnologias: [],
+    },
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log('Form submitted:', data);
+    toast({
+      title: "Candidatura enviada!",
+      description: "Acompanharemos o processo e entraremos em contato em breve.",
+    });
+    setStep(4); // Move to confirmation step
+  };
+
+  const tecnologias = [
+    'JavaScript', 'TypeScript', 'React', 'Node.js', 
+    'Python', 'Java', 'GIS', 'Cartografia', 
+    'Processamento de Imagens'
+  ];
+
+  const nextStep = () => {
+    if (step < 3) {
+      setStep(step + 1);
+    } else {
+      form.handleSubmit(onSubmit)();
+    }
+  };
+
+  const prevStep = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
+  };
+
+  const closeAndReset = () => {
+    setOpen(false);
+    setTimeout(() => {
+      setStep(1);
+      form.reset();
+    }, 300);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {trigger || (
           <Button className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white gap-2">
@@ -32,88 +99,202 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
           <DialogDescription>
-            Bem-vindo ao nosso portal de candidaturas. Siga os passos abaixo para se candidatar.
+            {step < 4 ? "Complete os passos abaixo para se candidatar." : "Candidatura enviada com sucesso!"}
           </DialogDescription>
         </DialogHeader>
         
-        <div className="py-4">
-          <h2 className="text-xl font-semibold mb-4">Como funciona nosso processo seletivo</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            {/* Step 1 */}
-            <Card className="border shadow overflow-hidden">
-              <CardContent className="p-5">
-                <div className="flex flex-col items-start">
-                  <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-tecgeo-teal mb-4">
-                    <span className="text-lg font-bold">1</span>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold mb-2">Cadastro</h3>
-                  
-                  <p className="text-gray-600 mb-4 text-sm">
-                    Preencha seus dados pessoais e informações de contato.
-                  </p>
-                  
-                  <Link to="/cadastro" className="text-tecgeo-teal hover:text-tecgeo-blue flex items-center group text-sm">
-                    <span>Iniciar Cadastro</span>
-                    <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+        {/* Progress Steps */}
+        {step < 4 && (
+          <div className="flex items-center justify-between mb-6 mt-2">
+            {[1, 2, 3].map((stepNumber) => (
+              <div key={stepNumber} className="flex flex-col items-center">
+                <div 
+                  className={cn(
+                    "h-10 w-10 rounded-full flex items-center justify-center text-white mb-2 transition-all",
+                    step === stepNumber ? "bg-tecgeo-teal" : step > stepNumber ? "bg-green-500" : "bg-gray-300"
+                  )}
+                >
+                  {step > stepNumber ? (
+                    <Check size={20} />
+                  ) : stepNumber === 1 ? (
+                    <User size={20} />
+                  ) : stepNumber === 2 ? (
+                    <FileText size={20} />
+                  ) : (
+                    <Upload size={20} />
+                  )}
                 </div>
-              </CardContent>
-            </Card>
-            
-            {/* Step 2 */}
-            <Card className="border shadow overflow-hidden">
-              <CardContent className="p-5">
-                <div className="flex flex-col items-start">
-                  <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-tecgeo-teal mb-4">
-                    <span className="text-lg font-bold">2</span>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold mb-2">Questionário</h3>
-                  
-                  <p className="text-gray-600 mb-4 text-sm">
-                    Responda às questões técnicas e comportamentais.
-                  </p>
-                  
-                  <Link to="/questionario" className="text-tecgeo-teal hover:text-tecgeo-blue flex items-center group text-sm">
-                    <span>Ver Questionário</span>
-                    <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            
-            {/* Step 3 */}
-            <Card className="border shadow overflow-hidden">
-              <CardContent className="p-5">
-                <div className="flex flex-col items-start">
-                  <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-tecgeo-teal mb-4">
-                    <span className="text-lg font-bold">3</span>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold mb-2">Envio</h3>
-                  
-                  <p className="text-gray-600 mb-4 text-sm">
-                    Revise todas as suas informações e envie sua candidatura.
-                  </p>
-                  
-                  <Link to="/login" className="text-tecgeo-teal hover:text-tecgeo-blue flex items-center group text-sm">
-                    <span>Acompanhar Candidatura</span>
-                    <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+                <span className={cn(
+                  "text-sm",
+                  step === stepNumber ? "text-tecgeo-teal font-medium" : ""
+                )}>
+                  {stepNumber === 1 ? "Dados Pessoais" : 
+                   stepNumber === 2 ? "Experiência" : "Envio"}
+                </span>
+              </div>
+            ))}
           </div>
-        </div>
+        )}
         
-        <div className="flex justify-end mt-4">
-          <Button className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white">
-            Iniciar Processo
-            <ArrowRight size={16} className="ml-2" />
-          </Button>
-        </div>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Step 1: Personal Information */}
+            {step === 1 && (
+              <div className="space-y-4 py-2">
+                <h2 className="text-lg font-semibold">Dados Pessoais</h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormItem>
+                    <FormLabel htmlFor="nome">Nome completo</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="nome"
+                        placeholder="Seu nome completo"
+                        {...form.register('nome')}
+                        required
+                      />
+                    </FormControl>
+                  </FormItem>
+                  
+                  <FormItem>
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="seu@email.com"
+                        {...form.register('email')}
+                        required
+                      />
+                    </FormControl>
+                  </FormItem>
+                  
+                  <FormItem>
+                    <FormLabel htmlFor="telefone">Telefone</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="telefone"
+                        placeholder="(00) 00000-0000"
+                        {...form.register('telefone')}
+                        required
+                      />
+                    </FormControl>
+                  </FormItem>
+                  
+                  <FormItem>
+                    <FormLabel htmlFor="cidade">Cidade/Estado</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="cidade"
+                        placeholder="Sua cidade/estado"
+                        {...form.register('cidade')}
+                        required
+                      />
+                    </FormControl>
+                  </FormItem>
+                </div>
+              </div>
+            )}
+            
+            {/* Step 2: Experience */}
+            {step === 2 && (
+              <div className="space-y-4 py-2">
+                <h2 className="text-lg font-semibold">Experiência Profissional</h2>
+                
+                <FormItem>
+                  <FormLabel htmlFor="experiencia">Descreva sua experiência prévia na área</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      id="experiencia"
+                      placeholder="Conte-nos sobre sua experiência..."
+                      className="min-h-[120px]"
+                      {...form.register('experiencia')}
+                      required
+                    />
+                  </FormControl>
+                </FormItem>
+              </div>
+            )}
+            
+            {/* Step 3: Technologies */}
+            {step === 3 && (
+              <div className="space-y-4 py-2">
+                <h2 className="text-lg font-semibold">Habilidades Técnicas</h2>
+                
+                <div className="space-y-2">
+                  <FormLabel>Quais tecnologias você domina?</FormLabel>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {tecnologias.map((tech) => (
+                      <div key={tech} className="flex items-center space-x-2">
+                        <Checkbox 
+                          id={tech} 
+                          onCheckedChange={(checked) => {
+                            const currentTechs = form.getValues('tecnologias') || [];
+                            if (checked) {
+                              form.setValue('tecnologias', [...currentTechs, tech]);
+                            } else {
+                              form.setValue('tecnologias', currentTechs.filter(t => t !== tech));
+                            }
+                          }}
+                        />
+                        <label htmlFor={tech} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                          {tech}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Step 4: Confirmation */}
+            {step === 4 && (
+              <div className="flex flex-col items-center justify-center text-center py-10">
+                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-500 mb-4">
+                  <Check size={32} />
+                </div>
+                <h4 className="text-xl font-semibold text-tecgeo-blue mb-2">Candidatura enviada com sucesso!</h4>
+                <p className="text-gray-600 mb-6">Obrigado pelo seu interesse em se juntar à nossa equipe. Avaliaremos seu perfil e entraremos em contato em breve.</p>
+                
+                <Button 
+                  type="button" 
+                  className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white"
+                  onClick={closeAndReset}
+                >
+                  Concluir
+                </Button>
+              </div>
+            )}
+            
+            {/* Navigation Buttons */}
+            {step < 4 && (
+              <div className="flex justify-between mt-6">
+                {step > 1 ? (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={prevStep}
+                    className="gap-2"
+                  >
+                    <ArrowLeft size={16} />
+                    Voltar
+                  </Button>
+                ) : (
+                  <div></div> // Empty div to maintain flex spacing
+                )}
+                
+                <Button
+                  type="button"
+                  className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white gap-2"
+                  onClick={nextStep}
+                >
+                  {step < 3 ? "Próximo" : "Enviar Candidatura"}
+                  {step < 3 && <ArrowRight size={16} />}
+                </Button>
+              </div>
+            )}
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
