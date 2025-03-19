@@ -10,14 +10,14 @@ const partnersData = [
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    logo: '/esri-logo.png', // Use a static image that exists in the public directory
+    logo: '/lovable-uploads/c888cf28-36cb-4fd9-aabd-11d57215e280.png', // Use the uploaded image
     website: 'https://www.esri.com'
   },
   {
     id: 2,
     name: 'Imagem',
     description: 'Empresa especializada em geotecnologias e distribuidora exclusiva dos produtos Esri no Brasil.',
-    logo: '/imagem-logo.png', // Use a static image that exists in the public directory
+    logo: '/lovable-uploads/c888cf28-36cb-4fd9-aabd-11d57215e280.png', // Use the same uploaded image for testing
     website: 'https://www.img.com.br'
   }
 ];
