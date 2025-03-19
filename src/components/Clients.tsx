@@ -25,7 +25,7 @@ const clientList = [
   { id: 12, name: 'Prefeitura de Teresina', type: 'municipality' },
   { id: 13, name: 'Prefeitura de Santa Rita', type: 'municipality' },
   { id: 14, name: 'SEBRAE', type: 'organization' },
-  { id: 15, name: 'CAGEPA', type: 'organization' },
+  { id: 15, name: 'CAGEPA', type: 'organization', logo: '/lovable-uploads/05db1f15-c543-4758-92c2-5f421741c2d8.png' },
   { id: 16, name: 'CREA-PB', type: 'organization' },
   { id: 17, name: 'CODATA', type: 'organization' },
 ];
@@ -76,12 +76,19 @@ const Clients = () => {
                 {clientList.map((client) => (
                   <CarouselItem key={client.id} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 h-32 flex flex-col items-center justify-center hover:shadow-md hover:border-secondary/20 transition-all duration-300">
-                      {client.type === 'municipality' ? (
-                        <Landmark className="h-6 w-6 text-secondary mb-2" />
+                      {client.logo ? (
+                        <img src={client.logo} alt={client.name} className="h-16 mb-2 object-contain" />
                       ) : (
-                        <Building className="h-6 w-6 text-accent mb-2" />
+                        <>
+                          {client.type === 'municipality' ? (
+                            <Landmark className="h-6 w-6 text-secondary mb-2" />
+                          ) : (
+                            <Building className="h-6 w-6 text-accent mb-2" />
+                          )}
+                          <h3 className="font-medium text-center">{client.name}</h3>
+                        </>
                       )}
-                      <h3 className="font-medium text-center">{client.name}</h3>
+                      {client.logo && <h3 className="font-medium text-center text-sm mt-1">{client.name}</h3>}
                     </div>
                   </CarouselItem>
                 ))}
