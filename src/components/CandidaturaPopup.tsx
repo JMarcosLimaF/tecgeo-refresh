@@ -18,6 +18,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/
 import { useForm } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CandidaturaPopupProps {
   trigger?: React.ReactNode;
@@ -36,6 +37,7 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
   const [step, setStep] = useState(1);
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
+  const isMobile = useIsMobile();
   
   const form = useForm<FormData>({
     defaultValues: {
@@ -95,7 +97,7 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] overflow-y-auto max-h-[90vh]">
+      <DialogContent className="p-8">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
           <DialogDescription>
@@ -105,27 +107,27 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
         
         {/* Progress Steps */}
         {step < 4 && (
-          <div className="flex items-center justify-between mb-6 mt-2">
+          <div className="flex items-center justify-between mb-8 mt-4">
             {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex flex-col items-center">
                 <div 
                   className={cn(
-                    "h-10 w-10 rounded-full flex items-center justify-center text-white mb-2 transition-all",
+                    "h-12 w-12 rounded-full flex items-center justify-center text-white mb-3 transition-all",
                     step === stepNumber ? "bg-tecgeo-teal" : step > stepNumber ? "bg-green-500" : "bg-gray-300"
                   )}
                 >
                   {step > stepNumber ? (
-                    <Check size={20} />
+                    <Check size={24} />
                   ) : stepNumber === 1 ? (
-                    <User size={20} />
+                    <User size={24} />
                   ) : stepNumber === 2 ? (
-                    <FileText size={20} />
+                    <FileText size={24} />
                   ) : (
-                    <Upload size={20} />
+                    <Upload size={24} />
                   )}
                 </div>
                 <span className={cn(
-                  "text-sm",
+                  "text-base",
                   step === stepNumber ? "text-tecgeo-teal font-medium" : ""
                 )}>
                   {stepNumber === 1 ? "Dados Pessoais" : 
@@ -137,27 +139,28 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
         )}
         
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Step 1: Personal Information */}
             {step === 1 && (
-              <div className="space-y-4 py-2">
-                <h2 className="text-lg font-semibold">Dados Pessoais</h2>
+              <div className="space-y-6 py-4">
+                <h2 className="text-xl font-semibold">Dados Pessoais</h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormItem>
-                    <FormLabel htmlFor="nome">Nome completo</FormLabel>
+                    <FormLabel htmlFor="nome" className="text-base">Nome completo</FormLabel>
                     <FormControl>
                       <Input
                         id="nome"
                         placeholder="Seu nome completo"
                         {...form.register('nome')}
                         required
+                        className="h-12 text-base"
                       />
                     </FormControl>
                   </FormItem>
                   
                   <FormItem>
-                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormLabel htmlFor="email" className="text-base">Email</FormLabel>
                     <FormControl>
                       <Input
                         id="email"
@@ -165,30 +168,33 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
                         placeholder="seu@email.com"
                         {...form.register('email')}
                         required
+                        className="h-12 text-base"
                       />
                     </FormControl>
                   </FormItem>
                   
                   <FormItem>
-                    <FormLabel htmlFor="telefone">Telefone</FormLabel>
+                    <FormLabel htmlFor="telefone" className="text-base">Telefone</FormLabel>
                     <FormControl>
                       <Input
                         id="telefone"
                         placeholder="(00) 00000-0000"
                         {...form.register('telefone')}
                         required
+                        className="h-12 text-base"
                       />
                     </FormControl>
                   </FormItem>
                   
                   <FormItem>
-                    <FormLabel htmlFor="cidade">Cidade/Estado</FormLabel>
+                    <FormLabel htmlFor="cidade" className="text-base">Cidade/Estado</FormLabel>
                     <FormControl>
                       <Input
                         id="cidade"
                         placeholder="Sua cidade/estado"
                         {...form.register('cidade')}
                         required
+                        className="h-12 text-base"
                       />
                     </FormControl>
                   </FormItem>
@@ -198,16 +204,16 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 2: Experience */}
             {step === 2 && (
-              <div className="space-y-4 py-2">
-                <h2 className="text-lg font-semibold">Experiência Profissional</h2>
+              <div className="space-y-6 py-4">
+                <h2 className="text-xl font-semibold">Experiência Profissional</h2>
                 
                 <FormItem>
-                  <FormLabel htmlFor="experiencia">Descreva sua experiência prévia na área</FormLabel>
+                  <FormLabel htmlFor="experiencia" className="text-base">Descreva sua experiência prévia na área</FormLabel>
                   <FormControl>
                     <Textarea
                       id="experiencia"
                       placeholder="Conte-nos sobre sua experiência..."
-                      className="min-h-[120px]"
+                      className="min-h-[180px] text-base"
                       {...form.register('experiencia')}
                       required
                     />
@@ -218,16 +224,17 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 3: Technologies */}
             {step === 3 && (
-              <div className="space-y-4 py-2">
-                <h2 className="text-lg font-semibold">Habilidades Técnicas</h2>
+              <div className="space-y-6 py-4">
+                <h2 className="text-xl font-semibold">Habilidades Técnicas</h2>
                 
-                <div className="space-y-2">
-                  <FormLabel>Quais tecnologias você domina?</FormLabel>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="space-y-4">
+                  <FormLabel className="text-base">Quais tecnologias você domina?</FormLabel>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {tecnologias.map((tech) => (
-                      <div key={tech} className="flex items-center space-x-2">
+                      <div key={tech} className="flex items-center space-x-3">
                         <Checkbox 
                           id={tech} 
+                          className="h-5 w-5"
                           onCheckedChange={(checked) => {
                             const currentTechs = form.getValues('tecnologias') || [];
                             if (checked) {
@@ -237,7 +244,7 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
                             }
                           }}
                         />
-                        <label htmlFor={tech} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        <label htmlFor={tech} className="text-base font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                           {tech}
                         </label>
                       </div>
@@ -249,16 +256,16 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 4: Confirmation */}
             {step === 4 && (
-              <div className="flex flex-col items-center justify-center text-center py-10">
-                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-500 mb-4">
-                  <Check size={32} />
+              <div className="flex flex-col items-center justify-center text-center py-12">
+                <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center text-green-500 mb-6">
+                  <Check size={40} />
                 </div>
-                <h4 className="text-xl font-semibold text-tecgeo-blue mb-2">Candidatura enviada com sucesso!</h4>
-                <p className="text-gray-600 mb-6">Obrigado pelo seu interesse em se juntar à nossa equipe. Avaliaremos seu perfil e entraremos em contato em breve.</p>
+                <h4 className="text-2xl font-semibold text-tecgeo-blue mb-4">Candidatura enviada com sucesso!</h4>
+                <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">Obrigado pelo seu interesse em se juntar à nossa equipe. Avaliaremos seu perfil e entraremos em contato em breve.</p>
                 
                 <Button 
                   type="button" 
-                  className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white"
+                  className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white h-12 px-8 text-base"
                   onClick={closeAndReset}
                 >
                   Concluir
@@ -268,15 +275,15 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Navigation Buttons */}
             {step < 4 && (
-              <div className="flex justify-between mt-6">
+              <div className="flex justify-between mt-8">
                 {step > 1 ? (
                   <Button
                     type="button"
                     variant="outline"
                     onClick={prevStep}
-                    className="gap-2"
+                    className="gap-2 h-12 px-6 text-base"
                   >
-                    <ArrowLeft size={16} />
+                    <ArrowLeft size={18} />
                     Voltar
                   </Button>
                 ) : (
@@ -285,11 +292,11 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
                 
                 <Button
                   type="button"
-                  className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white gap-2"
+                  className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white gap-2 h-12 px-6 text-base"
                   onClick={nextStep}
                 >
                   {step < 3 ? "Próximo" : "Enviar Candidatura"}
-                  {step < 3 && <ArrowRight size={16} />}
+                  {step < 3 && <ArrowRight size={18} />}
                 </Button>
               </div>
             )}
