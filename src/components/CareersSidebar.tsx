@@ -8,7 +8,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { Home, UserPlus, FileText, LogIn } from 'lucide-react';
+import { Home, LogIn } from 'lucide-react';
 
 const CareersSidebar = () => {
   const location = useLocation();
@@ -19,16 +19,6 @@ const CareersSidebar = () => {
       title: "Início",
       path: "/carreiras",
       icon: Home,
-    },
-    {
-      title: "Cadastro",
-      path: "/cadastro",
-      icon: UserPlus,
-    },
-    {
-      title: "Questionário",
-      path: "/questionario",
-      icon: FileText,
     },
     {
       title: "Login",

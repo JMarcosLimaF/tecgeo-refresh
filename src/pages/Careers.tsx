@@ -1,11 +1,10 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import CareersSidebar from '@/components/CareersSidebar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Users, FileText, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle, FileText, Clock } from 'lucide-react';
 
 const Careers = () => {
   return (
@@ -67,16 +66,11 @@ const Careers = () => {
                         <span className="text-xl font-bold">1</span>
                       </div>
                       
-                      <h3 className="text-xl font-bold mb-4">Cadastro</h3>
+                      <h3 className="text-xl font-bold mb-4">Contato Inicial</h3>
                       
                       <p className="text-gray-600 mb-6">
-                        Preencha seus dados pessoais e informações de contato para iniciar o processo.
+                        Entre em contato conosco para iniciar o processo de candidatura.
                       </p>
-                      
-                      <Link to="/cadastro" className="text-tecgeo-teal hover:text-tecgeo-blue flex items-center group">
-                        <span>Iniciar Cadastro</span>
-                        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -89,16 +83,11 @@ const Careers = () => {
                         <span className="text-xl font-bold">2</span>
                       </div>
                       
-                      <h3 className="text-xl font-bold mb-4">Questionário</h3>
+                      <h3 className="text-xl font-bold mb-4">Entrevista</h3>
                       
                       <p className="text-gray-600 mb-6">
-                        Responda às questões técnicas e comportamentais para avaliarmos suas habilidades.
+                        Participe de uma entrevista para avaliarmos suas habilidades e experiências.
                       </p>
-                      
-                      <Link to="/questionario" className="text-tecgeo-teal hover:text-tecgeo-blue flex items-center group">
-                        <span>Ver Questionário</span>
-                        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -111,16 +100,11 @@ const Careers = () => {
                         <span className="text-xl font-bold">3</span>
                       </div>
                       
-                      <h3 className="text-xl font-bold mb-4">Envio</h3>
+                      <h3 className="text-xl font-bold mb-4">Contratação</h3>
                       
                       <p className="text-gray-600 mb-6">
-                        Revise todas as suas informações e envie sua candidatura para análise.
+                        Após aprovação, daremos início ao processo de contratação.
                       </p>
-                      
-                      <Link to="/enviar" className="text-tecgeo-teal hover:text-tecgeo-blue flex items-center group">
-                        <span>Concluir Envio</span>
-                        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -157,8 +141,8 @@ const Careers = () => {
                     <div className="flex items-start gap-4">
                       <FileText className="text-tecgeo-teal flex-shrink-0 mt-1" size={20} />
                       <div>
-                        <h3 className="font-semibold mb-2">Questionários Personalizados</h3>
-                        <p className="text-gray-600">Nossos questionários são desenhados para avaliar suas habilidades técnicas e alinhar com nossas necessidades.</p>
+                        <h3 className="font-semibold mb-2">Processos Personalizados</h3>
+                        <p className="text-gray-600">Nossos processos são desenhados para avaliar suas habilidades técnicas e alinhar com nossas necessidades.</p>
                       </div>
                     </div>
                     
@@ -194,12 +178,12 @@ const Careers = () => {
               </h2>
               
               <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                Não perca a oportunidade de fazer parte de uma equipe inovadora. Inicie seu processo de candidatura agora mesmo.
+                Não perca a oportunidade de fazer parte de uma equipe inovadora. Entre em contato conosco.
               </p>
               
               <div className="flex justify-center">
                 <Button className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white py-6 px-8 text-lg gap-2">
-                  Iniciar Candidatura
+                  Entrar em Contato
                   <ArrowRight size={20} />
                 </Button>
               </div>
