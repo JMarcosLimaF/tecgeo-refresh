@@ -76,9 +76,11 @@ const Navbar = () => {
       <div className="section-container flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <span className="font-display text-2xl font-bold text-tecgeo-blue">
-            Tec<span className="text-tecgeo-teal">GEO</span>
-          </span>
+          <img 
+            src="/lovable-uploads/8699636b-3def-4c0d-ac54-afb97b3f7a58.png" 
+            alt="TecGEO Logo" 
+            className="h-10 md:h-12"
+          />
         </Link>
 
         {/* Desktop Navigation */}

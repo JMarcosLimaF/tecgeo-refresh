@@ -11,9 +11,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <a href="#" className="flex items-center mb-6">
-              <span className="font-display text-2xl font-bold text-white">
-                Tec<span className="text-tecgeo-teal">GEO</span>
-              </span>
+              <img 
+                src="/lovable-uploads/8699636b-3def-4c0d-ac54-afb97b3f7a58.png" 
+                alt="TecGEO Logo" 
+                className="h-12 mb-4"
+              />
             </a>
             <p className="text-gray-300 mb-6">
               Soluções em geotecnologia para planejamento territorial, 
