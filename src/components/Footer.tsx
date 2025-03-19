@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,17 +20,20 @@ const Footer = () => {
               análise ambiental e projetos de engenharia.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
+              <a href="https://www.facebook.com/tecgeobr/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
+              <a href="https://www.instagram.com/tecgeobr/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
+              <a href="https://x.com/tecgeobr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
+              <a href="https://www.linkedin.com/company/tecgeo?originalSubdomain=br" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
                 <Linkedin size={18} />
+              </a>
+              <a href="https://www.youtube.com/channel/UCcITMMG8Gtq5iuZk_pK8eFg" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
+                <Youtube size={18} />
               </a>
             </div>
           </div>
