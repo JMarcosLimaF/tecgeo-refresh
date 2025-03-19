@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +20,49 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Início', href: '#home' },
-    { name: 'Serviços', href: '#services' },
-    { name: 'Sobre', href: '#about' },
-    { name: 'Projetos', href: '#projects' },
-    { name: 'Contato', href: '#contact' },
+    { name: 'Início', href: isHomePage ? '#home' : '/' },
+    { name: 'Serviços', href: isHomePage ? '#services' : '/#services' },
+    { name: 'Sobre', href: isHomePage ? '#about' : '/#about' },
+    { name: 'Projetos', href: isHomePage ? '#projects' : '/#projects' },
+    { name: 'Contato', href: isHomePage ? '#contact' : '/#contact' },
   ];
+
+  const renderNavLink = (link: { name: string; href: string }) => {
+    if (link.href.startsWith('#')) {
+      // Internal anchor link on same page
+      return (
+        <a
+          href={link.href}
+          className="font-medium text-tecgeo-blue hover:text-tecgeo-teal underline-animation"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          {link.name}
+        </a>
+      );
+    } else if (link.href.includes('#')) {
+      // Link to home page with hash
+      return (
+        <Link
+          to={link.href}
+          className="font-medium text-tecgeo-blue hover:text-tecgeo-teal underline-animation"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          {link.name}
+        </Link>
+      );
+    } else {
+      // Normal page link
+      return (
+        <Link
+          to={link.href}
+          className="font-medium text-tecgeo-blue hover:text-tecgeo-teal underline-animation"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          {link.name}
+        </Link>
+      );
+    }
+  };
 
   return (
     <nav
@@ -35,29 +75,27 @@ const Navbar = () => {
     >
       <div className="section-container flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <span className="font-display text-2xl font-bold text-tecgeo-blue">
             Tec<span className="text-tecgeo-teal">GEO</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="font-medium text-tecgeo-blue hover:text-tecgeo-teal underline-animation"
-            >
-              {link.name}
-            </a>
+            <React.Fragment key={link.name}>
+              {renderNavLink(link)}
+            </React.Fragment>
           ))}
-          <a
-            href="#contact"
-            className="px-5 py-2 rounded-full bg-tecgeo-teal text-white font-medium hover:bg-tecgeo-blue hover:shadow-lg transition-all"
-          >
-            Fale Conosco
-          </a>
+          {location.pathname !== '/carreiras' && (
+            <Link
+              to="/carreiras"
+              className="px-5 py-2 rounded-full bg-tecgeo-teal text-white font-medium hover:bg-tecgeo-blue hover:shadow-lg transition-all"
+            >
+              Fale Conosco
+            </Link>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -79,22 +117,19 @@ const Navbar = () => {
       >
         <div className="section-container py-6 space-y-4">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="block py-2 font-medium text-tecgeo-blue hover:text-tecgeo-teal"
+            <React.Fragment key={link.name}>
+              {renderNavLink(link)}
+            </React.Fragment>
+          ))}
+          {location.pathname !== '/carreiras' && (
+            <Link
+              to="/carreiras"
+              className="block w-full text-center px-5 py-2 rounded-full bg-tecgeo-teal text-white font-medium hover:bg-tecgeo-blue transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              {link.name}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            className="block w-full text-center px-5 py-2 rounded-full bg-tecgeo-teal text-white font-medium hover:bg-tecgeo-blue transition-colors"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Fale Conosco
-          </a>
+              Fale Conosco
+            </Link>
+          )}
         </div>
       </div>
     </nav>
