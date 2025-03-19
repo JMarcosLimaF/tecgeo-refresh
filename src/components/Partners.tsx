@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FadeIn from './FadeIn';
-import { Handshake, ExternalLink } from 'lucide-react';
+import { Handshake, ExternalLink, Image as ImageIcon } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
-import { AspectRatio } from './ui/aspect-ratio';
 
+// Certifique-se de que os caminhos das imagens estão corretos e começam com /
 const partnersData = [
   {
     id: 1,
@@ -24,6 +24,24 @@ const partnersData = [
 
 const Partners = () => {
   const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
+  const [imagesLoaded, setImagesLoaded] = useState<{[key: number]: boolean}>({});
+
+  // Adicionar timestamp para evitar cache do navegador
+  const getImageUrl = (url: string) => {
+    if (!url) return null;
+    const timestamp = new Date().getTime();
+    return `${url}?t=${timestamp}`;
+  };
+
+  const handleImageLoad = (id: number) => {
+    console.log(`Image loaded successfully for partner ${id}`);
+    setImagesLoaded(prev => ({...prev, [id]: true}));
+  };
+
+  const handleImageError = (id: number) => {
+    console.log(`Error loading image for partner ${id}`);
+    setImageErrors(prev => ({...prev, [id]: true}));
+  };
 
   return (
     <section id="partners" className="py-16 bg-white">
@@ -46,27 +64,22 @@ const Partners = () => {
             <FadeIn key={partner.id} delay={partner.id * 100}>
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
-                  {partner.logo && !imageErrors[partner.id] ? (
-                    <div className="w-full max-w-[240px] mb-4">
+                  <div className="w-full max-w-[240px] mb-6 flex items-center justify-center min-h-[120px]">
+                    {partner.logo && !imageErrors[partner.id] ? (
                       <img 
-                        src={partner.logo} 
+                        src={getImageUrl(partner.logo)} 
                         alt={`${partner.name} logo`} 
-                        className="w-full object-contain" 
-                        onError={() => {
-                          console.log(`Error loading image for ${partner.name}`);
-                          setImageErrors(prev => ({...prev, [partner.id]: true}));
-                        }}
+                        className="max-w-full max-h-[120px] object-contain" 
+                        onLoad={() => handleImageLoad(partner.id)}
+                        onError={() => handleImageError(partner.id)}
                       />
-                    </div>
-                  ) : (
-                    <div className="w-full max-w-[240px] mb-4 py-4">
-                      <img 
-                        src="/lovable-uploads/4240845f-383a-4238-ae33-1b4f4a51482f.png" 
-                        alt="ESRI logo" 
-                        className="w-full object-contain"
-                      />
-                    </div>
-                  )}
+                    ) : (
+                      <div className="flex flex-col items-center justify-center text-gray-400">
+                        <ImageIcon size={48} />
+                        <span className="mt-2 text-sm">Imagem não disponível</span>
+                      </div>
+                    )}
+                  </div>
                   <h3 className="text-xl font-semibold text-tecgeo-blue">{partner.name}</h3>
                   <p className="mt-2 text-gray-600">{partner.description}</p>
                   
