@@ -40,9 +40,9 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Services />
+      <Projects />
       <Clients />
       <About />
-      <Projects />
       <Contact />
       <Footer />
     </div>
