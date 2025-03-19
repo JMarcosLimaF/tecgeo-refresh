@@ -148,14 +148,6 @@ const Careers = () => {
                   <div className="flex items-start gap-4">
                     <CheckCircle className="text-tecgeo-teal flex-shrink-0 mt-1" size={20} />
                     <div>
-                      <h3 className="font-semibold mb-2">Processo Simplificado</h3>
-                      <p className="text-gray-600">Nosso portal oferece uma experiência intuitiva para que você possa se concentrar no que importa: demonstrar seu talento.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <Users className="text-tecgeo-teal flex-shrink-0 mt-1" size={20} />
-                    <div>
                       <h3 className="font-semibold mb-2">Avaliação Especializada</h3>
                       <p className="text-gray-600">Sua candidatura será avaliada por profissionais experientes que buscam os melhores talentos para nossa equipe.</p>
                     </div>
@@ -186,9 +178,48 @@ const Careers = () => {
             </div>
           </div>
         </section>
+        
+        {/* Call to Action */}
+        <section className="py-16 bg-gray-50">
+          <div className="section-container text-center max-w-4xl mx-auto">
+            <div className="mb-6 text-tecgeo-teal">
+              <span className="inline-block px-3 py-1 bg-tecgeo-teal/10 rounded-full text-sm font-medium">
+                Pronto para começar?
+              </span>
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Inicie sua jornada com a TecGEO
+            </h2>
+            
+            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+              Não perca a oportunidade de fazer parte de uma equipe inovadora. Inicie seu processo de candidatura agora mesmo.
+            </p>
+            
+            <div className="flex justify-center">
+              <Button className="bg-tecgeo-teal hover:bg-tecgeo-blue text-white py-6 px-8 text-lg gap-2">
+                Iniciar Candidatura
+                <ArrowRight size={20} />
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
       
-      <Footer />
+      <footer className="bg-white py-8 border-t border-gray-200">
+        <div className="section-container">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-600 text-sm">
+              © 2025 TecGEO. Todos os direitos reservados.
+            </p>
+            <div className="flex gap-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-600 text-sm hover:text-tecgeo-teal">Termos</a>
+              <a href="#" className="text-gray-600 text-sm hover:text-tecgeo-teal">Privacidade</a>
+              <a href="#" className="text-gray-600 text-sm hover:text-tecgeo-teal">Contato</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
