@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import FadeIn from './FadeIn';
 import { MapPin, Mail, Phone, ArrowRight, Check, Users } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
+import CandidaturaPopup from './CandidaturaPopup';
 
 const Contact = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -161,14 +163,18 @@ const Contact = () => {
                   Estamos sempre em busca de talentos para nossa equipe. Temos oportunidades para diversas áreas como cartografia, geoprocessamento, desenvolvimento e muito mais.
                 </p>
                 
-                <Link to="/carreiras" className="w-full">
-                  <Button 
-                    className="w-full bg-tecgeo-blue text-white hover:bg-tecgeo-teal transition-colors"
-                  >
-                    Ver oportunidades
-                    <ArrowRight size={18} className="ml-2" />
-                  </Button>
-                </Link>
+                <div className="w-full">
+                  <CandidaturaPopup 
+                    trigger={
+                      <Button 
+                        className="w-full bg-tecgeo-blue text-white hover:bg-tecgeo-teal transition-colors"
+                      >
+                        Ver oportunidades
+                        <ArrowRight size={18} className="ml-2" />
+                      </Button>
+                    }
+                  />
+                </div>
               </div>
             </div>
           </FadeIn>
