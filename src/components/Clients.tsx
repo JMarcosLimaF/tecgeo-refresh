@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Building, Landmark } from 'lucide-react';
 import FadeIn from './FadeIn';
@@ -74,20 +75,30 @@ const Clients = () => {
               <CarouselContent className="-ml-2 md:-ml-4">
                 {clientList.map((client) => (
                   <CarouselItem key={client.id} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 h-32 flex flex-col items-center justify-center hover:shadow-md hover:border-secondary/20 transition-all duration-300">
+                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 h-36 flex flex-col items-center justify-center hover:shadow-md hover:border-secondary/20 transition-all duration-300">
                       {client.logo ? (
-                        <img src={client.logo} alt={client.name} className="h-16 mb-2 object-contain" />
+                        <div className="h-20 flex items-center justify-center mb-2">
+                          <img 
+                            src={client.logo} 
+                            alt={client.name} 
+                            className="max-h-16 max-w-full object-contain" 
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.onerror = null;
+                              target.style.display = 'none';
+                            }}
+                          />
+                        </div>
                       ) : (
-                        <>
+                        <div className="mb-2">
                           {client.type === 'municipality' ? (
-                            <Landmark className="h-6 w-6 text-secondary mb-2" />
+                            <Landmark className="h-8 w-8 text-secondary" />
                           ) : (
-                            <Building className="h-6 w-6 text-accent mb-2" />
+                            <Building className="h-8 w-8 text-accent" />
                           )}
-                          <h3 className="font-medium text-center">{client.name}</h3>
-                        </>
+                        </div>
                       )}
-                      {client.logo && <h3 className="font-medium text-center text-sm mt-1">{client.name}</h3>}
+                      <h3 className="font-medium text-center text-sm">{client.name}</h3>
                     </div>
                   </CarouselItem>
                 ))}
