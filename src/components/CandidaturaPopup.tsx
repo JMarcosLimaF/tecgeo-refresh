@@ -98,15 +98,15 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
       </DialogTrigger>
       <DialogContent className="p-6">
         <DialogHeader className="mb-0 pb-0">
-          <DialogTitle className="text-lg font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
-          <DialogDescription className="text-sm">
+          <DialogTitle className="text-sm font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
+          <DialogDescription className="text-xs">
             {step < 4 ? "Complete os passos abaixo para se candidatar." : "Candidatura enviada com sucesso!"}
           </DialogDescription>
         </DialogHeader>
         
-        {/* Progress Steps - Positioned higher with smaller icons */}
+        {/* Progress Steps - Positioned much higher with smaller icons */}
         {step < 4 && (
-          <div className="flex items-center justify-between mb-4 mt-1">
+          <div className="flex items-center justify-between -mt-1">
             {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex flex-col items-center">
                 <div 
@@ -141,7 +141,7 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             {/* Step 1: Personal Information */}
             {step === 1 && (
-              <div className="space-y-5 py-2">
+              <div className="space-y-5 py-2 mt-10">
                 <h2 className="text-lg font-semibold">Dados Pessoais</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -203,7 +203,7 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 2: Experience */}
             {step === 2 && (
-              <div className="space-y-5 py-2">
+              <div className="space-y-5 py-2 mt-10">
                 <h2 className="text-lg font-semibold">Experiência Profissional</h2>
                 
                 <FormItem>
@@ -223,7 +223,7 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 3: Technologies */}
             {step === 3 && (
-              <div className="space-y-5 py-2">
+              <div className="space-y-5 py-2 mt-10">
                 <h2 className="text-lg font-semibold">Habilidades Técnicas</h2>
                 
                 <div className="space-y-4">
