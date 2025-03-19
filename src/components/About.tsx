@@ -5,7 +5,7 @@ import { CheckCircle, Award, Users, BarChart } from 'lucide-react';
 
 const About = () => {
   const stats = [
-    { value: '15+', label: 'Anos de experiência' },
+    { value: '20+', label: 'Anos de experiência' },
     { value: '200+', label: 'Projetos concluídos' },
     { value: '50+', label: 'Clientes satisfeitos' },
     { value: '9/10', label: 'Avaliação de satisfação' },
