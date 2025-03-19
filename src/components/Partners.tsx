@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FadeIn from './FadeIn';
 import { Handshake, Building } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
@@ -20,6 +20,24 @@ const partnersData = [
 ];
 
 const Partners = () => {
+  const [imagesLoaded, setImagesLoaded] = useState<{[key: string]: boolean}>({});
+  
+  useEffect(() => {
+    // Preload images
+    partnersData.forEach(partner => {
+      if (partner.logo) {
+        const img = new Image();
+        img.onload = () => {
+          setImagesLoaded(prev => ({...prev, [partner.id]: true}));
+        };
+        img.onerror = () => {
+          console.error(`Failed to load image for partner: ${partner.name}`);
+        };
+        img.src = partner.logo;
+      }
+    });
+  }, []);
+
   return (
     <section id="partners" className="py-16 bg-white">
       <div className="section-container">
@@ -42,12 +60,22 @@ const Partners = () => {
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   {partner.logo ? (
-                    <div className="w-28 h-28 flex items-center justify-center mb-4">
+                    <div className="w-32 h-32 flex items-center justify-center mb-4 border border-gray-100 rounded-md overflow-hidden">
                       <img 
                         src={partner.logo} 
                         alt={`${partner.name} logo`} 
-                        className="max-h-full max-w-full object-contain" 
+                        className="max-h-28 max-w-28 object-contain" 
+                        onError={(e) => {
+                          console.error(`Error loading image: ${partner.logo}`);
+                          // Fallback to icon if image fails to load
+                          e.currentTarget.style.display = 'none';
+                          // We'll add a data attribute so we can style a fallback
+                          e.currentTarget.parentElement?.setAttribute('data-image-error', 'true');
+                        }}
                       />
+                      <div className={`hidden ${imagesLoaded[partner.id] ? 'hidden' : 'flex'} items-center justify-center`}>
+                        <Building size={48} className="text-tecgeo-teal/50" />
+                      </div>
                     </div>
                   ) : (
                     <div className="w-16 h-16 rounded-full bg-tecgeo-teal/10 flex items-center justify-center text-tecgeo-teal mb-4">
