@@ -44,7 +44,7 @@ const About = () => {
                 <span>Sobre Nós</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-tecgeo-blue mb-6">
-                Experiência e inovação em geotecnologia desde 2008
+                Experiência e inovação em geotecnologia desde 2005
               </h2>
               <p className="text-gray-600 mb-8">
                 A TecGEO é uma empresa especializada em serviços de geotecnologia, 
