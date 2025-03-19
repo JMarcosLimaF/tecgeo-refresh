@@ -96,37 +96,37 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="p-8">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
-          <DialogDescription>
+      <DialogContent className="p-6">
+        <DialogHeader className="mb-0 pb-0">
+          <DialogTitle className="text-lg font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
+          <DialogDescription className="text-sm">
             {step < 4 ? "Complete os passos abaixo para se candidatar." : "Candidatura enviada com sucesso!"}
           </DialogDescription>
         </DialogHeader>
         
-        {/* Progress Steps - Adjusted icon size and positioning */}
+        {/* Progress Steps - Positioned higher with smaller icons */}
         {step < 4 && (
-          <div className="flex items-center justify-between mb-6 mt-2">
+          <div className="flex items-center justify-between mb-4 mt-1">
             {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex flex-col items-center">
                 <div 
                   className={cn(
-                    "h-8 w-8 rounded-full flex items-center justify-center text-white mb-2 transition-all",
+                    "h-7 w-7 rounded-full flex items-center justify-center text-white mb-1 transition-all",
                     step === stepNumber ? "bg-tecgeo-teal" : step > stepNumber ? "bg-green-500" : "bg-gray-300"
                   )}
                 >
                   {step > stepNumber ? (
-                    <Check size={14} />
+                    <Check size={12} />
                   ) : stepNumber === 1 ? (
-                    <User size={14} />
+                    <User size={12} />
                   ) : stepNumber === 2 ? (
-                    <FileText size={14} />
+                    <FileText size={12} />
                   ) : (
-                    <Upload size={14} />
+                    <Upload size={12} />
                   )}
                 </div>
                 <span className={cn(
-                  "text-sm",
+                  "text-xs",
                   step === stepNumber ? "text-tecgeo-teal font-medium" : ""
                 )}>
                   {stepNumber === 1 ? "Dados Pessoais" : 
@@ -138,13 +138,13 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
         )}
         
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             {/* Step 1: Personal Information */}
             {step === 1 && (
-              <div className="space-y-6 py-4">
-                <h2 className="text-xl font-semibold">Dados Pessoais</h2>
+              <div className="space-y-5 py-2">
+                <h2 className="text-lg font-semibold">Dados Pessoais</h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <FormItem>
                     <FormLabel htmlFor="nome" className="text-base">Nome completo</FormLabel>
                     <FormControl>
@@ -203,8 +203,8 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 2: Experience */}
             {step === 2 && (
-              <div className="space-y-6 py-4">
-                <h2 className="text-xl font-semibold">Experiência Profissional</h2>
+              <div className="space-y-5 py-2">
+                <h2 className="text-lg font-semibold">Experiência Profissional</h2>
                 
                 <FormItem>
                   <FormLabel htmlFor="experiencia" className="text-base">Descreva sua experiência prévia na área</FormLabel>
@@ -223,8 +223,8 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 3: Technologies */}
             {step === 3 && (
-              <div className="space-y-6 py-4">
-                <h2 className="text-xl font-semibold">Habilidades Técnicas</h2>
+              <div className="space-y-5 py-2">
+                <h2 className="text-lg font-semibold">Habilidades Técnicas</h2>
                 
                 <div className="space-y-4">
                   <FormLabel className="text-base">Quais tecnologias você domina?</FormLabel>
@@ -255,12 +255,12 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Step 4: Confirmation */}
             {step === 4 && (
-              <div className="flex flex-col items-center justify-center text-center py-12">
+              <div className="flex flex-col items-center justify-center text-center py-10">
                 <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center text-green-500 mb-6">
                   <Check size={40} />
                 </div>
                 <h4 className="text-2xl font-semibold text-tecgeo-blue mb-4">Candidatura enviada com sucesso!</h4>
-                <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">Obrigado pelo seu interesse em se juntar à nossa equipe. Avaliaremos seu perfil e entraremos em contato em breve.</p>
+                <p className="text-lg text-gray-600 mb-6 max-w-md mx-auto">Obrigado pelo seu interesse em se juntar à nossa equipe. Avaliaremos seu perfil e entraremos em contato em breve.</p>
                 
                 <Button 
                   type="button" 
@@ -274,7 +274,7 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             
             {/* Navigation Buttons */}
             {step < 4 && (
-              <div className="flex justify-between mt-8">
+              <div className="flex justify-between mt-6">
                 {step > 1 ? (
                   <Button
                     type="button"
