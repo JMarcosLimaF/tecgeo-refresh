@@ -207,21 +207,6 @@ const Careers = () => {
           </section>
         </main>
       </div>
-      
-      <footer className="bg-white py-8 border-t border-gray-200">
-        <div className="section-container">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600 text-sm">
-              © 2025 TecGEO. Todos os direitos reservados.
-            </p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-600 text-sm hover:text-tecgeo-teal">Termos</a>
-              <a href="#" className="text-gray-600 text-sm hover:text-tecgeo-teal">Privacidade</a>
-              <a href="#" className="text-gray-600 text-sm hover:text-tecgeo-teal">Contato</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </SidebarProvider>
   );
 };
