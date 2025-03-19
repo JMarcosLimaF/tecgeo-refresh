@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, ArrowLeft, Check, User, FileText, Upload } from 'lucide-react';
 import {
   Dialog,
@@ -105,29 +104,29 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
           </DialogDescription>
         </DialogHeader>
         
-        {/* Progress Steps */}
+        {/* Progress Steps - Adjusted icon size and positioning */}
         {step < 4 && (
-          <div className="flex items-center justify-between mb-8 mt-4">
+          <div className="flex items-center justify-between mb-6 mt-2">
             {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex flex-col items-center">
                 <div 
                   className={cn(
-                    "h-12 w-12 rounded-full flex items-center justify-center text-white mb-3 transition-all",
+                    "h-8 w-8 rounded-full flex items-center justify-center text-white mb-2 transition-all",
                     step === stepNumber ? "bg-tecgeo-teal" : step > stepNumber ? "bg-green-500" : "bg-gray-300"
                   )}
                 >
                   {step > stepNumber ? (
-                    <Check size={24} />
+                    <Check size={14} />
                   ) : stepNumber === 1 ? (
-                    <User size={24} />
+                    <User size={14} />
                   ) : stepNumber === 2 ? (
-                    <FileText size={24} />
+                    <FileText size={14} />
                   ) : (
-                    <Upload size={24} />
+                    <Upload size={14} />
                   )}
                 </div>
                 <span className={cn(
-                  "text-base",
+                  "text-sm",
                   step === stepNumber ? "text-tecgeo-teal font-medium" : ""
                 )}>
                   {stepNumber === 1 ? "Dados Pessoais" : 
