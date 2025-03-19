@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Building, Landmark } from 'lucide-react';
 import FadeIn from './FadeIn';
 import { 
@@ -31,6 +31,24 @@ const clientList = [
 ];
 
 const Clients = () => {
+  const [api, setApi] = useState<any>(null);
+
+  useEffect(() => {
+    if (!api) return;
+
+    // Set up auto-scroll interval
+    const autoScrollInterval = setInterval(() => {
+      if (api) {
+        api.scrollNext();
+      }
+    }, 3000); // Scroll every 3 seconds
+
+    // Clean up interval on component unmount
+    return () => {
+      clearInterval(autoScrollInterval);
+    };
+  }, [api]);
+
   return (
     <section id="clients" className="py-16 bg-gray-50">
       <div className="section-container">
@@ -51,6 +69,7 @@ const Clients = () => {
                 align: "start",
                 loop: true,
               }}
+              setApi={setApi}
               className="w-full"
             >
               <CarouselContent className="-ml-2 md:-ml-4">
