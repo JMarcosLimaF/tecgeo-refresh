@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FadeIn from './FadeIn';
 import { Handshake, Building, ExternalLink } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
@@ -10,7 +10,7 @@ const partnersData = [
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    logo: '/lovable-uploads/ee2dc2b6-268e-4427-8275-180af3cb4e95.png',
+    logo: '/lovable-uploads/4240845f-383a-4238-ae33-1b4f4a51482f.png',
     website: 'https://www.esri.com'
   },
   {
@@ -24,11 +24,6 @@ const partnersData = [
 
 const Partners = () => {
   const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
-
-  // Função para limpar o cache da imagem adicionando um timestamp
-  const getImageUrl = (url: string) => {
-    return `${url}?t=${new Date().getTime()}`;
-  };
 
   return (
     <section id="partners" className="py-16 bg-white">
@@ -52,10 +47,10 @@ const Partners = () => {
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   {partner.logo && !imageErrors[partner.id] ? (
-                    <div className="w-full max-w-[200px] border border-gray-200 rounded-md p-4 mb-4 bg-white">
-                      <AspectRatio ratio={4/3} className="bg-white">
+                    <div className="w-full max-w-[240px] border border-gray-200 rounded-md p-6 mb-4 bg-white">
+                      <AspectRatio ratio={16/9} className="bg-white">
                         <img 
-                          src={getImageUrl(partner.logo)} 
+                          src={partner.logo} 
                           alt={`${partner.name} logo`} 
                           className="w-full h-full object-contain" 
                           onError={() => {
