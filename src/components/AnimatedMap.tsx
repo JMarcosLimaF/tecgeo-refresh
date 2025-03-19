@@ -22,7 +22,13 @@ const AnimatedMap = () => {
     
     // Grid points
     const gridSize = 20;
-    const points: { x: number; y: number; originX: number; originY: number; }[] = [];
+    const points: { 
+      x: number; 
+      y: number; 
+      originX: number; 
+      originY: number; 
+      color: string;
+    }[] = [];
     
     // Generate grid
     const generateGrid = () => {
@@ -39,6 +45,7 @@ const AnimatedMap = () => {
             y: pointY,
             originX: pointX,
             originY: pointY,
+            color: 'rgba(14, 165, 233, 0.4)' // Default color (blue)
           });
         }
       }
@@ -65,15 +72,8 @@ const AnimatedMap = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Draw lines
-      ctx.beginPath();
-      ctx.strokeStyle = 'rgba(14, 165, 233, 0.2)';
-      ctx.lineWidth = 0.5;
-      
-      for (let i = 0; i < points.length; i++) {
-        const point = points[i];
-        
-        // Apply subtle movement to points
+      // Process points and update their colors based on mouse proximity
+      for (const point of points) {
         const dx = mouseX - point.originX;
         const dy = mouseY - point.originY;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -83,31 +83,52 @@ const AnimatedMap = () => {
           const force = (1 - distance / maxDistance) * 5;
           point.x = point.originX + (dx * force) / 10;
           point.y = point.originY + (dy * force) / 10;
+          
+          // Transition color to light green (#90ee90) based on proximity
+          const colorIntensity = 1 - distance / maxDistance;
+          point.color = `rgba(144, 238, 144, ${0.4 + colorIntensity * 0.6})`; // Light green with variable opacity
         } else {
           point.x = point.originX;
           point.y = point.originY;
+          point.color = 'rgba(14, 165, 233, 0.4)'; // Default blue color
         }
+      }
+      
+      // Draw lines between points
+      ctx.beginPath();
+      ctx.lineWidth = 0.5;
+      
+      for (let i = 0; i < points.length; i++) {
+        const pointA = points[i];
         
-        // Connect nearby points with lines
         for (let j = i + 1; j < points.length; j++) {
           const pointB = points[j];
           const distanceAB = Math.sqrt(
-            Math.pow(point.x - pointB.x, 2) + Math.pow(point.y - pointB.y, 2)
+            Math.pow(pointA.x - pointB.x, 2) + Math.pow(pointA.y - pointB.y, 2)
           );
           
           if (distanceAB < gridSize * 1.5) {
-            ctx.moveTo(point.x, point.y);
+            // Calculate line color based on the average color of connected points
+            const isNearMouse = 
+              pointA.color.includes('144, 238, 144') || 
+              pointB.color.includes('144, 238, 144');
+              
+            ctx.strokeStyle = isNearMouse 
+              ? 'rgba(144, 238, 144, 0.2)' // Light green for lines near mouse
+              : 'rgba(14, 165, 233, 0.2)'; // Default blue for regular lines
+              
+            ctx.beginPath();
+            ctx.moveTo(pointA.x, pointA.y);
             ctx.lineTo(pointB.x, pointB.y);
+            ctx.stroke();
           }
         }
       }
       
-      ctx.stroke();
-      
-      // Draw subtle dots at points
+      // Draw dots at points
       for (const point of points) {
         ctx.beginPath();
-        ctx.fillStyle = 'rgba(14, 165, 233, 0.4)';
+        ctx.fillStyle = point.color;
         ctx.arc(point.x, point.y, 1, 0, Math.PI * 2);
         ctx.fill();
       }
