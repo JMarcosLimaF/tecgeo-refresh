@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import FadeIn from './FadeIn';
-import { Handshake, ExternalLink, ImageIcon } from 'lucide-react';
+import { Handshake, ExternalLink } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 
 // Define os parceiros com seus dados
@@ -10,27 +10,17 @@ const partnersData = [
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    logo: '/lovable-uploads/c888cf28-36cb-4fd9-aabd-11d57215e280.png', // Use the uploaded image
     website: 'https://www.esri.com'
   },
   {
     id: 2,
     name: 'Imagem',
     description: 'Empresa especializada em geotecnologias e distribuidora exclusiva dos produtos Esri no Brasil.',
-    logo: '/lovable-uploads/c888cf28-36cb-4fd9-aabd-11d57215e280.png', // Use the same uploaded image for testing
     website: 'https://www.img.com.br'
   }
 ];
 
 const Partners = () => {
-  // Estado para controlar imagens com erro de carregamento
-  const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
-
-  const handleImageError = (id: number) => {
-    console.log(`Erro ao carregar imagem do parceiro ${id}`);
-    setImageErrors(prev => ({...prev, [id]: true}));
-  };
-
   return (
     <section id="partners" className="py-16 bg-white">
       <div className="section-container">
@@ -52,23 +42,8 @@ const Partners = () => {
             <FadeIn key={partner.id} delay={partner.id * 100}>
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="w-full max-w-[240px] mb-6 flex items-center justify-center min-h-[120px]">
-                    {!imageErrors[partner.id] ? (
-                      <img 
-                        src={partner.logo} 
-                        alt={`${partner.name} logo`} 
-                        className="max-w-full max-h-[120px] object-contain" 
-                        onError={() => handleImageError(partner.id)}
-                      />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center text-gray-400">
-                        <ImageIcon size={48} />
-                        <span className="mt-2 text-sm">Logo não disponível</span>
-                      </div>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold text-tecgeo-blue">{partner.name}</h3>
-                  <p className="mt-2 text-gray-600">{partner.description}</p>
+                  <h3 className="text-2xl font-semibold text-tecgeo-blue mb-4">{partner.name}</h3>
+                  <p className="text-gray-600">{partner.description}</p>
                   
                   {partner.website && (
                     <a 
