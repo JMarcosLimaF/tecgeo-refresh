@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import FadeIn from './FadeIn';
 import { MapPin, Mail, Phone, ArrowRight, Check, Users } from 'lucide-react';
@@ -76,7 +75,6 @@ const Contact = () => {
               <div className="mt-10">
                 <h4 className="font-medium text-tecgeo-blue mb-3">Horário de atendimento</h4>
                 <p className="text-gray-600">Segunda a Sexta: 8h às 18h</p>
-                <p className="text-gray-600">Sábado: 9h às 13h</p>
               </div>
             </div>
           </FadeIn>
