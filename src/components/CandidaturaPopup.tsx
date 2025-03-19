@@ -97,9 +97,16 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
         )}
       </DialogTrigger>
       <DialogContent className="p-6">
-        {/* Progress Steps - Positioned at the very top */}
+        <DialogHeader className="mb-2 pb-0">
+          <DialogTitle className="text-xs font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
+          <DialogDescription className="text-xs">
+            {step < 4 ? "Complete os passos abaixo para se candidatar." : "Candidatura enviada com sucesso!"}
+          </DialogDescription>
+        </DialogHeader>
+        
+        {/* Progress Steps - Now positioned after the title */}
         {step < 4 && (
-          <div className="flex items-center justify-between -mt-3 mb-4">
+          <div className="flex items-center justify-between mb-4">
             {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex flex-col items-center">
                 <div 
@@ -129,13 +136,6 @@ const CandidaturaPopup = ({ trigger }: CandidaturaPopupProps) => {
             ))}
           </div>
         )}
-
-        <DialogHeader className="mb-0 pb-0 mt-2">
-          <DialogTitle className="text-xs font-bold text-tecgeo-blue">Portal de Candidatura</DialogTitle>
-          <DialogDescription className="text-xs">
-            {step < 4 ? "Complete os passos abaixo para se candidatar." : "Candidatura enviada com sucesso!"}
-          </DialogDescription>
-        </DialogHeader>
         
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
