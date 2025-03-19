@@ -37,6 +37,10 @@ const Cadastro = () => {
                     <label htmlFor="cidade" className="text-sm font-medium">Cidade/Estado</label>
                     <Input id="cidade" placeholder="Sua cidade/estado" />
                   </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <label htmlFor="endereco" className="text-sm font-medium">Endereço completo</label>
+                    <Input id="endereco" placeholder="Rua, número, bairro, complemento" />
+                  </div>
                 </div>
                 
                 <div className="pt-4">
