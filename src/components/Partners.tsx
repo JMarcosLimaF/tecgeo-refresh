@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import FadeIn from './FadeIn';
-import { Handshake, Building, ExternalLink } from 'lucide-react';
+import { Handshake, ExternalLink } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { AspectRatio } from './ui/aspect-ratio';
 
@@ -47,22 +47,24 @@ const Partners = () => {
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   {partner.logo && !imageErrors[partner.id] ? (
-                    <div className="w-full max-w-[240px] border border-gray-200 rounded-md p-6 mb-4 bg-white">
-                      <AspectRatio ratio={16/9} className="bg-white">
-                        <img 
-                          src={partner.logo} 
-                          alt={`${partner.name} logo`} 
-                          className="w-full h-full object-contain" 
-                          onError={() => {
-                            console.log(`Error loading image for ${partner.name}`);
-                            setImageErrors(prev => ({...prev, [partner.id]: true}));
-                          }}
-                        />
-                      </AspectRatio>
+                    <div className="w-full max-w-[240px] mb-4">
+                      <img 
+                        src={partner.logo} 
+                        alt={`${partner.name} logo`} 
+                        className="w-full object-contain" 
+                        onError={() => {
+                          console.log(`Error loading image for ${partner.name}`);
+                          setImageErrors(prev => ({...prev, [partner.id]: true}));
+                        }}
+                      />
                     </div>
                   ) : (
-                    <div className="w-20 h-20 rounded-full bg-tecgeo-teal/10 flex items-center justify-center text-tecgeo-teal mb-4">
-                      <Building size={36} />
+                    <div className="w-full max-w-[240px] mb-4 py-4">
+                      <img 
+                        src="/lovable-uploads/4240845f-383a-4238-ae33-1b4f4a51482f.png" 
+                        alt="ESRI logo" 
+                        className="w-full object-contain"
+                      />
                     </div>
                   )}
                   <h3 className="text-xl font-semibold text-tecgeo-blue">{partner.name}</h3>
