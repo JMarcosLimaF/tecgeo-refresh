@@ -1,44 +1,62 @@
 
 import React from 'react';
 import FadeIn from './FadeIn';
-import { MapPin, Globe, Map, Compass, Database, PenTool } from 'lucide-react';
+import { MapPin, Globe, Map, Compass, Building, Truck, Database, GraduationCap, BarChart3 } from 'lucide-react';
 
 const serviceItems = [
   {
     icon: <MapPin className="w-6 h-6" />,
-    title: 'Levantamento Topográfico',
-    description: 'Levantamentos topográficos com precisão milimétrica utilizando equipamentos de alta tecnologia.',
+    title: 'Aquisição de Informação Aérea',
+    description: 'Aerofotogrametria, imagens de satélites e drones para coleta de dados geoespaciais de alta qualidade.',
     color: 'bg-blue-50 text-blue-500'
   },
   {
-    icon: <Globe className="w-6 h-6" />,
-    title: 'Geoprocessamento',
-    description: 'Processamento e análise de dados geoespaciais para tomada de decisões estratégicas.',
+    icon: <Map className="w-6 h-6" />,
+    title: 'Base Cartográfica',
+    description: 'Produção de Base Cartográfica Digital de Precisão com os mais altos padrões técnicos.',
     color: 'bg-teal-50 text-teal-500'
   },
   {
-    icon: <Map className="w-6 h-6" />,
-    title: 'Cartografia Digital',
-    description: 'Produção de mapas digitais e plantas topográficas com alto padrão de qualidade.',
+    icon: <Building className="w-6 h-6" />,
+    title: 'Cadastro Urbano e Rural',
+    description: 'CAR, Cadastro Fundiário, Imobiliário, Socioeconômico e Multifinalitário para gestão territorial eficiente.',
     color: 'bg-amber-50 text-amber-500'
   },
   {
     icon: <Compass className="w-6 h-6" />,
-    title: 'Geodésia e GPS',
-    description: 'Levantamentos geodésicos e rastreamento GPS para georreferenciamento de imóveis.',
+    title: 'Mapeamento Móvel 360º',
+    description: 'Imageamento de fachadas e infraestrutura com tecnologia avançada para visualização completa.',
     color: 'bg-purple-50 text-purple-500'
   },
   {
-    icon: <Database className="w-6 h-6" />,
-    title: 'Banco de Dados Geográficos',
-    description: 'Desenvolvimento e implementação de bancos de dados geográficos para gestão territorial.',
+    icon: <Truck className="w-6 h-6" />,
+    title: 'Mapeamento Urbano e Rural',
+    description: 'Levantamento de dados no meio Urbano e Rural para planejamento territorial estratégico.',
     color: 'bg-green-50 text-green-500'
   },
   {
-    icon: <PenTool className="w-6 h-6" />,
-    title: 'Projetos de Engenharia',
-    description: 'Elaboração de projetos de engenharia com suporte de tecnologias geoespaciais.',
+    icon: <Globe className="w-6 h-6" />,
+    title: 'Planta de Valores Genéricos',
+    description: 'Geração de Planta de Valores Genéricos (PVG) para atualização da base tributária municipal.',
     color: 'bg-indigo-50 text-indigo-500'
+  },
+  {
+    icon: <Database className="w-6 h-6" />,
+    title: 'Desenvolvimento de SIG',
+    description: 'Desenvolvimento e Implantação de Sistemas de Informações Geográficas (SIG) customizados.',
+    color: 'bg-red-50 text-red-500'
+  },
+  {
+    icon: <GraduationCap className="w-6 h-6" />,
+    title: 'Consultoria & Treinamento',
+    description: 'Consultoria e Treinamento nas mais diversas ferramentas de geotecnologia para sua equipe.',
+    color: 'bg-emerald-50 text-emerald-500'
+  },
+  {
+    icon: <BarChart3 className="w-6 h-6" />,
+    title: 'Data Science e BI',
+    description: 'Painéis Inteligentes com técnicas avançadas de Data Science e Business Intelligence.',
+    color: 'bg-cyan-50 text-cyan-500'
   }
 ];
 
