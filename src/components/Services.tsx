@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import FadeIn from './FadeIn';
-import { MapPin, Globe, Map, Compass, Building, Truck, Database, GraduationCap, BarChart3 } from 'lucide-react';
+import { MapPin, Globe, Map, Building, Truck, Database, GraduationCap, BarChart3 } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const serviceItems = [
@@ -42,7 +42,7 @@ const serviceItems = [
     ]
   },
   {
-    icon: <Compass className="w-6 h-6" />,
+    icon: <img src="/lovable-uploads/9f10bc3e-995d-4d0e-b71b-74ae0ce11c76.png" alt="Drone" className="w-6 h-6" />,
     title: 'Mapeamento Móvel 360º',
     description: 'Imageamento de fachadas e infraestrutura com tecnologia avançada para visualização completa.',
     color: 'bg-purple-50 text-purple-500',
