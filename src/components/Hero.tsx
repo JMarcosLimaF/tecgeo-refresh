@@ -25,7 +25,7 @@ const Hero = () => {
             
             <FadeIn delay={200}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-tecgeo-blue">
-                Soluções em geotecnologia para planejamento territorial, análise ambiental e projetos de engenharia.
+                Transformando a gestão pública com geotecnologia e inovação!
               </h1>
             </FadeIn>
             
