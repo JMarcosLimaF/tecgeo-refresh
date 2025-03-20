@@ -19,13 +19,13 @@ const clientList = [
   { id: 6, name: 'Prefeitura de Ipojuca', type: 'municipality' },
   { id: 7, name: 'Prefeitura de São José do Ribamar', type: 'municipality' },
   { id: 8, name: 'Prefeitura de São Luís', type: 'municipality' },
-  { id: 9, name: 'Prefeitura de João Pessoa', type: 'municipality', logo: './lovable-uploads/973264d0-ef7b-406e-82cb-e3343fd3eb43.png' },
+  { id: 9, name: 'Prefeitura de João Pessoa', type: 'municipality' },
   { id: 10, name: 'Prefeitura de Garanhuns', type: 'municipality' },
   { id: 11, name: 'Prefeitura de Recife', type: 'municipality' },
   { id: 12, name: 'Prefeitura de Teresina', type: 'municipality' },
   { id: 13, name: 'Prefeitura de Santa Rita', type: 'municipality' },
   { id: 14, name: 'SEBRAE', type: 'organization' },
-  { id: 15, name: 'CAGEPA', type: 'organization', logo: './lovable-uploads/a67fe434-a140-4e15-9bb3-a0e542e7a458.png' },
+  { id: 15, name: 'CAGEPA', type: 'organization' },
   { id: 16, name: 'CREA-PB', type: 'organization' },
   { id: 17, name: 'CODATA', type: 'organization' },
 ];
@@ -87,34 +87,13 @@ const Clients = () => {
                 {clientList.map((client) => (
                   <CarouselItem key={client.id} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 h-36 flex flex-col items-center justify-center hover:shadow-md hover:border-secondary/20 transition-all duration-300">
-                      {client.logo ? (
-                        <div className="h-20 flex items-center justify-center mb-2">
-                          {imagesLoaded[client.id] !== false && (
-                            <img 
-                              src={client.logo} 
-                              alt={client.name} 
-                              className="max-h-16 max-w-full object-contain" 
-                              onLoad={() => handleImageLoad(client.id)}
-                              onError={() => handleImageError(client.id)}
-                            />
-                          )}
-                          {imagesLoaded[client.id] === false && (
-                            client.type === 'municipality' ? (
-                              <Landmark className="h-8 w-8 text-secondary" />
-                            ) : (
-                              <Building className="h-8 w-8 text-accent" />
-                            )
-                          )}
-                        </div>
-                      ) : (
-                        <div className="mb-2">
-                          {client.type === 'municipality' ? (
-                            <Landmark className="h-8 w-8 text-secondary" />
-                          ) : (
-                            <Building className="h-8 w-8 text-accent" />
-                          )}
-                        </div>
-                      )}
+                      <div className="mb-2">
+                        {client.type === 'municipality' ? (
+                          <Landmark className="h-8 w-8 text-secondary" />
+                        ) : (
+                          <Building className="h-8 w-8 text-accent" />
+                        )}
+                      </div>
                       <h3 className="font-medium text-center text-sm">{client.name}</h3>
                     </div>
                   </CarouselItem>

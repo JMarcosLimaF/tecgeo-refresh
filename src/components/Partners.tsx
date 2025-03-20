@@ -10,8 +10,7 @@ const partnersData = [
     id: 1,
     name: 'ESRI',
     description: 'Líder mundial em sistemas de informação geográfica (GIS) e soluções de inteligência de localização.',
-    website: 'https://www.esri.com',
-    logo: './lovable-uploads/eecd654f-43ec-45e8-852e-73726d39c150.png'
+    website: 'https://www.esri.com'
   },
   {
     id: 2,
@@ -43,15 +42,6 @@ const Partners = () => {
             <FadeIn key={partner.id} delay={partner.id * 100}>
               <Card className="h-full hover:shadow-md transition-shadow border-tecgeo-teal/10">
                 <CardContent className="p-6 flex flex-col items-center text-center">
-                  {partner.logo && (
-                    <div className="mb-4 h-16 flex items-center justify-center">
-                      <img 
-                        src={partner.logo} 
-                        alt={`${partner.name} logo`} 
-                        className="max-h-full max-w-full object-contain" 
-                      />
-                    </div>
-                  )}
                   <h3 className="text-2xl font-semibold text-tecgeo-blue mb-4">{partner.name}</h3>
                   <p className="text-gray-600">{partner.description}</p>
                   
