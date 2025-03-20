@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -6,7 +5,6 @@ import Services from '@/components/Services';
 import Clients from '@/components/Clients';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
-import Partners from '@/components/Partners';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import CandidaturaPopup from '@/components/CandidaturaPopup';
@@ -57,7 +55,6 @@ const Index = () => {
       <Projects />
       <Clients />
       <About />
-      <Partners />
       <Contact />
       <Footer />
     </div>
