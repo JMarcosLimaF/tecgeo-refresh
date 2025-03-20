@@ -59,7 +59,6 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium text-tecgeo-blue">Email</h4>
                     <p className="text-gray-600 mt-1">contato@tecnologiageo.com.br</p>
-                    <p className="text-gray-600">comercial@tecnologiageo.com.br</p>
                   </div>
                 </div>
                 
