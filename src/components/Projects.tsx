@@ -126,11 +126,11 @@ const Projects = () => {
         <FadeIn>
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-tecgeo-teal/10 text-tecgeo-teal text-sm font-medium mb-2">
-              <span>Projetos Realizados</span>
+              <span>Soluções</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-tecgeo-blue">Conheça nossos projetos</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-tecgeo-blue">Conheça nossas soluções</h2>
             <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-              Explore nosso portfólio de projetos executados com excelência técnica e 
+              Explore nosso portfólio de soluções executadas com excelência técnica e 
               compromisso com a qualidade e a satisfação dos clientes.
             </p>
           </div>
