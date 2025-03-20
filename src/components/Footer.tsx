@@ -16,8 +16,7 @@ const Footer = () => {
               </span>
             </a>
             <p className="text-gray-300 mb-6">
-              Soluções em geotecnologia para planejamento territorial, 
-              análise ambiental e projetos de engenharia.
+              Transformando a gestão pública com geotecnologia e inovação!
             </p>
             <div className="flex space-x-4">
               <a href="https://www.facebook.com/tecgeobr/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
