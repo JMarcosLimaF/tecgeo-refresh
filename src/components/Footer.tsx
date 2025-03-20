@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import Partners from './Partners';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,7 @@ const Footer = () => {
             <p className="text-gray-300 mb-6">
               Transformando a gestão pública com geotecnologia e inovação!
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-8">
               <a href="https://www.facebook.com/tecgeobr/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tecgeo-teal/80 transition-colors">
                 <Facebook size={18} />
               </a>
@@ -35,6 +36,21 @@ const Footer = () => {
                 <Youtube size={18} />
               </a>
             </div>
+            
+            {/* Partners section below social media icons */}
+            <div className="bg-white/5 rounded-lg p-4 mb-6">
+              <h3 className="text-sm font-semibold mb-2 text-tecgeo-teal">Parceiros Estratégicos</h3>
+              <div className="grid grid-cols-2 gap-2">
+                <a href="https://www.esri.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-300 hover:text-white flex items-center">
+                  <span className="w-1.5 h-1.5 bg-tecgeo-teal rounded-full mr-1"></span>
+                  ESRI
+                </a>
+                <a href="https://www.img.com.br" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-300 hover:text-white flex items-center">
+                  <span className="w-1.5 h-1.5 bg-tecgeo-teal rounded-full mr-1"></span>
+                  Imagem
+                </a>
+              </div>
+            </div>
           </div>
           
           <div>
@@ -42,7 +58,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li><a href="#about" className="text-gray-300 hover:text-white transition-colors">Sobre nós</a></li>
               <li><a href="#services" className="text-gray-300 hover:text-white transition-colors">Serviços</a></li>
-              <li><a href="#projects" className="text-gray-300 hover:text-white transition-colors">Projetos</a></li>
+              <li><a href="#projects" className="text-gray-300 hover:text-white transition-colors">Soluções</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Clientes</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Carreira</a></li>
             </ul>
