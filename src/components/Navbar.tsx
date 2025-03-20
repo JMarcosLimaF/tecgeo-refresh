@@ -23,7 +23,8 @@ const Navbar = () => {
     { name: 'Início', href: isHomePage ? '#home' : '/' },
     { name: 'Serviços', href: isHomePage ? '#services' : '/#services' },
     { name: 'Sobre', href: isHomePage ? '#about' : '/#about' },
-    { name: 'Projetos', href: isHomePage ? '#projects' : '/#projects' },
+    { name: 'Soluções', href: isHomePage ? '#projects' : '/#projects' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contato', href: isHomePage ? '#contact' : '/#contact' },
   ];
 
